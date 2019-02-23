@@ -1,0 +1,202 @@
+{
+  "swagger": "2.0",
+  "info": {
+	"title": "Sample API",
+	"description": "API description in Markdown.",
+	"version": "1.0.0"
+  },
+  "schemes": [
+	"http"
+  ],
+  "basePath": "/",
+  "definitions": {
+	"Movie": {
+	  "type": "object",
+	  "properties": {
+		"movieName": {
+		  "type": "string"
+		},
+		"title": {
+		  "type": "string"
+		},
+		"_year_data": {
+		  "type": "string"
+		},
+		"year": {
+		  "type": "number"
+		},
+		"rated": {
+		  "type": "string"
+		},
+		"released": {
+		  "type": "string"
+		},
+		"runtime": {
+		  "type": "string"
+		},
+		"genres": {
+		  "type": "string"
+		},
+		"director": {
+		  "type": "string"
+		},
+		"writer": {
+		  "type": "string"
+		},
+		"actors": {
+		  "type": "string"
+		},
+		"plot": {
+		  "type": "string"
+		},
+		"languages": {
+		  "type": "string"
+		},
+		"country": {
+		  "type": "string"
+		},
+		"awards": {
+		  "type": "string"
+		},
+		"poster": {
+		  "type": "string"
+		},
+		"originalPoster": {
+		  "type": "string"
+		},
+		"ratings": {
+		  "type": "array",
+		  "items": {
+			"type": "object",
+			"properties": {
+			  "Source": {
+				"type": "string"
+			  },
+			  "Value": {
+				"type": "string"
+			  }
+			}
+		  }
+		},
+		"metascore": {
+		  "type": "string"
+		},
+		"rating": {
+		  "type": "string"
+		},
+		"votes": {
+		  "type": "string"
+		},
+		"imdbid": {
+		  "type": "string"
+		},
+		"type": {
+		  "type": "string"
+		},
+		"boxoffice": {
+		  "type": "string"
+		},
+		"production": {
+		  "type": "string"
+		},
+		"website": {
+		  "type": "string"
+		},
+		"series": {
+		  "type": "string"
+		},
+		"imdburl": {
+		  "type": "string"
+		}
+	  },
+	  "example": {
+		"ratings": [
+		  {
+			"Source": "Internet Movie Database",
+			"Value": "8.8/10"
+		  },
+		  {
+			"Source": "Rotten Tomatoes",
+			"Value": "86%"
+		  },
+		  {
+			"Source": "Metacritic",
+			"Value": "74/100"
+		  }
+		],
+		"title": "Inception",
+		"_year_data": "2010",
+		"actors": "Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Tom Hardy",
+		"awards": "Won 4 Oscars. Another 152 wins & 204 nominations.",
+		"boxoffice": "$292,568,851",
+		"country": "USA, UK",
+		"director": "Christopher Nolan",
+		"genres": "Action, Adventure, Sci-Fi, Thriller",
+		"imdbid": "tt1375666",
+		"imdburl": "https://www.imdb.com/title/tt1375666",
+		"languages": "English, Japanese, French",
+		"metascore": "74",
+		"plot": "Dom Cobb is a skilled thief, the absolute best in the dangerous art of extraction, stealing valuable secrets from deep within the subconscious during the dream state, when the mind is at its most vulnerable. Cobb's rare ability has made him a coveted player in this treacherous new world of corporate espionage, but it has also made him an international fugitive and cost him everything he has ever loved. Now Cobb is being offered a chance at redemption. One last job could give him his life back but only if he can accomplish the impossible - inception. Instead of the perfect heist, Cobb and his team of specialists have to pull off the reverse: their task is not to steal an idea but to plant one. If they succeed, it could be the perfect crime. But no amount of careful planning or expertise can prepare the team for the dangerous enemy that seems to predict their every move. An enemy that only Cobb could have seen coming.",
+		"poster": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+		"production": "Warner Bros. Pictures",
+		"rated": "PG-13",
+		"rating": "8.8",
+		"released": "Fri Jul 16 2010 00:00:00 GMT+0430 (+0430)",
+		"runtime": "148 min",
+		"series": "false",
+		"type": "movie",
+		"votes": "1,766,435",
+		"website": "http://inceptionmovie.warnerbros.com/",
+		"writer": "Christopher Nolan",
+		"year": 2010
+	  }
+	}
+  },
+  "paths": {
+	"/movies": {
+	  "get": {
+		"summary": "Get Movie info ",
+		"description": "For getting a movie info send the movie's name",
+		"produces": [
+		  "application/json"
+		],
+		"parameters": [
+		  {
+			"in": "query",
+			"name": "title",
+			"type": "string",
+			"required": "true",
+			"default": "inception"
+		  }
+		],
+		"responses": {
+		  "200": {
+			"description": "OK",
+			"schema": {
+			  "$ref": "#/definitions/Movie"
+			}
+		  }
+		}
+	  }
+	},
+	"/movies/poster": {
+	  "get": {
+		"summary": "Get a picture content of an image link",
+		"description": "The basic usage of this end point is to download image from filterred sites, this service works as a proxy",
+		"parameters": [
+		  {
+			"in": "query",
+			"name": "imageLink",
+			"required": "true",
+			"default": "http://images-na.ssl-images-amazon.com/images/M/MV5BMzFjMWNhYzQtYTIxNC00ZWQ1LThiOTItNWQyZmMxNDYyMjA5XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
+		  }
+		],
+		"responses": {
+		  "200": {
+			"description": ""
+		  }
+		}
+	  }
+	}
+  }
+}
