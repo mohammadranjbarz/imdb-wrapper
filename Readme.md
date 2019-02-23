@@ -10,7 +10,8 @@ Then go to [OMDB](http://www.omdbapi.com/) register an Api-key
 then create a server-config.json with content like below, or pass
 these parameters as environment variables
 
-``` {
+``` 
+{
       "MONGO_HOST":"localhost",
        "MONGO_PORT":"27017",
        "MONGO_USERNAME":"iusername",
