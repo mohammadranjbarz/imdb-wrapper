@@ -32,10 +32,10 @@ async function getMovieInfoFromOmdb(movieName, year) {
     })
     console.log("result of omdb", result)
     if (result.data.Response === "False") {
-        throw new Error("Movie not found ")
+        throw new Error("Movie not found movie"+movie+" year "+year)
     }
     const movie = convertAllKeysToLowerCase(result.data)
-    if (String(movie.year) !== year) {
+    if (String(movie.year) !== String(year)) {
         throw new Error("Movie with your year not found ")
     }
     movie.ratings = movie.ratings.map(item =>{
@@ -44,7 +44,7 @@ async function getMovieInfoFromOmdb(movieName, year) {
             value :item.Value
         }
     })
-    // movie.rating = movie.ratings[0].value
+    movie.rating = movie.imdbrating || movie.ratings[0].value
     movie.movieName = movie.title.toLowerCase();
     await movieAdapter.createMovie(movie)
     return movie
