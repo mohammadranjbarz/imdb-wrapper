@@ -35,7 +35,7 @@ async function getMovieInfoFromOmdb(movieName, year) {
         throw new Error("Movie not found movie"+movie+" year "+year)
     }
     const movie = convertAllKeysToLowerCase(result.data)
-    if (String(movie.year) !== String(year)) {
+    if (year && String(movie.year) !== String(year)) {
         throw new Error("Movie with your year not found ")
     }
     movie.ratings = movie.ratings.map(item =>{
