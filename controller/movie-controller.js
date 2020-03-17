@@ -37,8 +37,13 @@ async function getMovieInfoFromOmdb(movieName, year) {
     const movie = convertAllKeysToLowerCase(result.data)
     if (movie.year !== year) {
         throw new Error("Movie with your year not found ")
-
     }
+    movie.ratings = movie.ratings.map(item =>{
+        return {
+            source : item.Source,
+            value :item.Value
+        }
+    })
     movie.movieName = movie.title.toLowerCase();
     await movieAdapter.createMovie(movie)
     return movie
@@ -76,7 +81,7 @@ async function getMovieInfo(req, res) {
     } catch (e) {
         console.log("getMovieInfo err", e)
 
-        res.status(500).json(e.message)
+        res.status(500).json({message:e.message})
     }
 
 }
