@@ -165,8 +165,16 @@
 			"in": "query",
 			"name": "title",
 			"type": "string",
-			"required": "true",
+			"required": true,
 			"default": "inception"
+		  },
+
+		  {
+			"in": "query",
+			"name": "year",
+			"type": "string",
+			"required": false,
+			"default": "2010"
 		  }
 		],
 		"responses": {

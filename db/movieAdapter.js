@@ -1,19 +1,23 @@
 const movieSchema = require('./dbAdapter').movie;
 
-function createMovie(movie, callback){
-    movieSchema.findOneAndUpdate(
+function createMovie(movie){
+    return movieSchema.findOneAndUpdate(
         {"title":movie.title
         },
         movie,
         {upsert:true}
 
-    ).exec(callback)
+    )
 }
 
 
 
-function findMovieByTitle(movieName,  callback){
-    movieSchema.findOne( { movieName} , callback)
+function findMovieByTitle(movieName, year){
+    const conditions ={movieName}
+    if (year) {
+        conditions.year = year
+    }
+    return movieSchema.findOne( conditions)
 }
 
 
