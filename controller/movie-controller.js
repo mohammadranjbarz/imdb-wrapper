@@ -44,6 +44,7 @@ async function getMovieInfoFromOmdb(movieName, year) {
             value :item.Value
         }
     })
+    // movie.rating = movie.ratings[0].value
     movie.movieName = movie.title.toLowerCase();
     await movieAdapter.createMovie(movie)
     return movie
